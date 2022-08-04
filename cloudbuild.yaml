@@ -1,7 +1,7 @@
 steps:
   - name: 'gcr.io/cloud-builders/git'
     args: [
-          'checkout origin/dev'
+          'checkout', 'origin/dev'
       ]
 
   - name: 'gcr.io/$PROJECT_ID/terraform'
