@@ -1,4 +1,9 @@
 steps:
+  - name: 'gcr.io/cloud-builders/git'
+    args: [
+          'checkout origin/dev'
+      ]
+
   - name: 'gcr.io/$PROJECT_ID/terraform'
     args: [
         'init'
@@ -9,3 +14,4 @@ steps:
         '-c',
         'terraform plan -no-color > plan.txt'
     ]
+
