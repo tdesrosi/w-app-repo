@@ -1,6 +1,3 @@
-options:
-  logging: CLOUD_LOGGING_ONLY
-
 availableSecrets:
   secretManager:
   - versionName: projects/w-appdev-0804/secrets/github/versions/latest
@@ -53,3 +50,6 @@ steps:
   - --policy-path=./w-secteam-repo/policy-library/
   - --project
   - "w-appdev-0804"
+
+options:
+  logging: CLOUD_LOGGING_ONLY
