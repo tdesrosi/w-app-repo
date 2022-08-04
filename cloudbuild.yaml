@@ -1,41 +1,54 @@
-steps:
-- id: 'tf plan'
-  name: 'hashicorp/terraform:1.0.0'
-  entrypoint: 'sh'
-  args:
-  - '-c'
-  - |
-      echo "branch $BRANCH_NAME"
-      if [ ! -z "$BRANCH_NAME" -a -d "terraform/environments/$BRANCH_NAME/" ]; then
-        cd terraform/environments/$BRANCH_NAME
-        echo "run init"
-        terraform init
-        echo "run validate"
-        terraform validate
-        echo "run plan"
-        terraform
-      fi
+# steps:
+# - name: gcr.io/config-validator/terraform-validator
+#   entrypoint: terraform
+#   args:
+#   - init
 
-- name: gcr.io/config-validator/terraform-validator
-  entrypoint: terraform
-  dir: deployments/app1/dev
+# - name: gcr.io/config-validator/terraform-validator
+#   entrypoint: terraform
+#   args:
+#   - plan
+#   - -out=terraform.plan
+
+# - name: gcr.io/config-validator/terraform-validator
+#   entrypoint: "/bin/bash"
+#   args: ['-c', 'terraform show -json terraform.plan > terraform.json']
+
+# Access the id_github file from Secret Manager, and setup SSH
+steps:
+- name: 'gcr.io/cloud-builders/git'
+  secretEnv: ['SSH_KEY']
+  entrypoint: 'bash'
   args:
-  - init
-- name: gcr.io/config-validator/terraform-validator
-  dir: deployments/app1/dev
-  entrypoint: terraform
+  - -c
+  - |
+    echo "$$SSH_KEY" >> /root/.ssh/id_rsa
+    chmod 400 /root/.ssh/id_rsa
+    cp known_hosts.github /root/.ssh/known_hosts
+  volumes:
+  - name: 'ssh'
+    path: /root/.ssh
+
+# Clone the repository
+- name: 'gcr.io/cloud-builders/git'
   args:
-  - plan
-  - -out=terraform.plan
-- name: gcr.io/config-validator/terraform-validator
-  entrypoint: "/bin/bash"
-  args: ['-c', 'terraform show -json terraform.plan > terraform.json']
-  dir: deployments/app1/dev
-- name: gcr.io/config-validator/terraform-validator
-  dir: deployments/app1/dev
-  args:
-  - validate
-  - terraform.json
-  - --policy-path=../../../policy-library/
-  - --project
-  - "test-playground-2"
+  - clone
+  - --recurse-submodules
+  - git@github.com:lykasegura/w-secteam-repo
+  volumes:
+  - name: 'ssh'
+    path: /root/.ssh
+
+availableSecrets:
+  secretManager:
+  - versionName: projects/w-appdev-0804/secrets/github/versions/latest
+    env: 'SSH_KEY'
+
+# - name: gcr.io/config-validator/terraform-validator
+#   dir: deployments/app1/dev
+#   args:
+#   - validate
+#   - terraform.json
+#   - --policy-path=../../../policy-library/
+#   - --project
+#   - "test-playground-2"
