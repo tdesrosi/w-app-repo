@@ -34,7 +34,7 @@ steps:
   args:
   - clone
   - --recurse-submodules
-  - git@github.com:lykasegura/w-secteam-repo
+  - git@github.com:lykaasegura/w-secteam-repo.git
   volumes:
   - name: 'ssh'
     path: /root/.ssh
