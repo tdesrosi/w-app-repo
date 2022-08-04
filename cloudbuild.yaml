@@ -34,10 +34,20 @@ steps:
   args:
     - -c
     - |
-        git clone --branch $BRANCH_NAME https://github.com/path/to/yourRepo.git /tmp/repo
+        git clone --branch git@github.com:lykaasegura/w-secteam-repo.git /tmp/repo ;
   volumes:
   - name: 'ssh'
     path: /root/.ssh
+
+# # Clone the repository
+# - name: 'gcr.io/cloud-builders/git'
+#   args:
+#   - clone
+#   - --recurse-submodules
+#   - git@github.com:lykaasegura/w-secteam-repo.git
+#   volumes:
+#   - name: 'ssh'
+#     path: /root/.ssh
 
 availableSecrets:
   secretManager:
