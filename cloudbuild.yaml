@@ -1,0 +1,11 @@
+steps:
+  - name: 'gcr.io/$PROJECT_ID/terraform'
+    args: [
+        'init'
+    ]
+  - name: 'gcr.io/$PROJECT_ID/terraform'
+    entrypoint: 'bash'
+    args: [
+        '-c',
+        'terraform plan -no-color > plan.txt'
+    ]
