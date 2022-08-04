@@ -29,12 +29,12 @@ steps:
   - name: 'ssh'
     path: /root/.ssh
 
-# Clone the repository
 - name: 'gcr.io/cloud-builders/git'
+  entrypoint: /bin/bash
   args:
-  - clone
-  - --recurse-submodules
-  - git@github.com:lykaasegura/w-secteam-repo.git
+    - -c
+    - |
+        git clone --branch $BRANCH_NAME https://github.com/path/to/yourRepo.git /tmp/repo
   volumes:
   - name: 'ssh'
     path: /root/.ssh
@@ -45,7 +45,6 @@ availableSecrets:
     env: 'SSH_KEY'
 
 # - name: gcr.io/config-validator/terraform-validator
-#   dir: deployments/app1/dev
 #   args:
 #   - validate
 #   - terraform.json
