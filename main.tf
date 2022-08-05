@@ -2,6 +2,7 @@
 
 resource "google_project_iam_binding" "sample_iam_binding" {
 #   project = "w-app-targetapp-dev-0805"
+  project = "w-targetapp-dev-0805"
   role    = "roles/compute.orgSecurityPolicyAdmin"
 
   members = [
