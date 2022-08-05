@@ -28,7 +28,7 @@ steps:
   args:
   - validate
   - terraform.json
-  - --policy-path=./w-secteam-repo/policy-folder
+  - --policy-path=./w-secteam-repo
 
 # - id: "tf apply"
 #   name: gcr.io/config-validator/terraform-validator
