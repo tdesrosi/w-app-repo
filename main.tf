@@ -5,7 +5,7 @@ resource "google_project_iam_binding" "sample_iam_binding" {
   role    = "roles/compute.orgSecurityPolicyAdmin"
 
   members = [
-    "user:user@example.com"
+    "user:lyk@lykasegura.joonix.net"
   ]
 }
 
@@ -13,7 +13,7 @@ resource "google_project_iam_binding" "sample_iam_binding" {
 
 # resource "google_storage_bucket" "test-storage-bucket" {
 # 	project = "w-app-targetapp-prod-0805"
-#   name          = "w-test-storage-0909"
+#   name          = "w-test-storage-prd-0909"
 #   location      = "US"
 #   force_destroy = true
 # }
