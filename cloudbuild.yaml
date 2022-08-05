@@ -1,6 +1,6 @@
 availableSecrets:
   secretManager:
-  - versionName: projects/w-appdev-0805/secrets/secret-name/versions/latest
+  - versionName: projects/w-appdev-0805/secrets/cloudbuild-git/versions/latest
     env: 'SSH_KEY'
 
 steps:
