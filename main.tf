@@ -5,7 +5,7 @@ resource "google_project_iam_binding" "sample_iam_binding" {
   role    = "roles/compute.orgSecurityPolicyAdmin"
 
   members = [
-    "user:user@example.com"
+    "user:lyka@lykasegura.joonix.net"
   ]
 }
 
