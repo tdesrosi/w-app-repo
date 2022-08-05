@@ -1,47 +1,34 @@
-# availableSecrets:
-#   secretManager:
-#   - versionName: projects/w-appdev-0804/secrets/github/versions/latest
-#     env: 'SSH_KEY'
-
 steps:
-# Access the id_github file from Secret Manager, and setup SSH
-# - name: 'gcr.io/cloud-builders/git'
-#   secretEnv: ['SSH_KEY']
-#   entrypoint: 'bash'
+
+# - name: gcr.io/config-validator/terraform-validator
+#   entrypoint: terraform
 #   args:
-#   - -c
-#   - |
-#     echo "$$SSH_KEY" >> /root/.ssh/id_rsa
-#     chmod 400 /root/.ssh/id_rsa
-#     cp known_hosts.github /root/.ssh/known_hosts
-#   volumes:
-#   - name: 'ssh'
-#     path: /root/.ssh
+#   - init
 
-# # Clone the repository
-# - name: 'gcr.io/cloud-builders/git'
+# - name: gcr.io/config-validator/terraform-validator
+#   entrypoint: terraform
 #   args:
-#   - clone
-#   - --recurse-submodules
-#   - git@github.com:lykaasegura/w-secteam-repo.git
-#   volumes:
-#   - name: 'ssh'
-#     path: /root/.ssh
+#   - plan
+#   - -out=terraform.plan
 
-- name: gcr.io/config-validator/terraform-validator
-  entrypoint: terraform
-  args:
-  - init
+# - name: gcr.io/config-validator/terraform-validator
+#   entrypoint: "/bin/bash"
+#   args: ['-c', 'terraform show -json terraform.plan > terraform.json']
 
-- name: gcr.io/config-validator/terraform-validator
-  entrypoint: terraform
-  args:
-  - plan
-  - -out=terraform.plan
+- name: 'gcr.io/${PROJECT_ID}/terraform'
+  args: ['init']
+  env:
+    - "TF_VAR_project=${PROJECT_ID}"
 
-- name: gcr.io/config-validator/terraform-validator
-  entrypoint: "/bin/bash"
-  args: ['-c', 'terraform show -json terraform.plan > terraform.json']
+- name: 'gcr.io/${PROJECT_ID}/terraform'
+  args: ['plan']
+  env:
+    - "TF_VAR_project=${PROJECT_ID}"
+
+- name: 'gcr.io/${PROJECT_ID}/terraform'
+  args: ['show', 'json', '>', "./tfplan.json"]
+  env:
+    - "TF_VAR_project=${PROJECT_ID}"
 
 - name: gcr.io/config-validator/terraform-validator
   args:
@@ -49,3 +36,7 @@ steps:
   - terraform.json
   - --policy-path=./policy-folder
 
+# - name: 'gcr.io/${PROJECT_ID}/terraform'
+#   args: ['apply', '-auto-approve']
+#   env:
+#     - "TF_VAR_project-name=${PROJECT_ID}"
