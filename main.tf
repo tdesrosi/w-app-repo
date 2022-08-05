@@ -17,7 +17,7 @@ resource "google_compute_instance" "default" {
 
   boot_disk {
     initialize_params {
-      image = "ubuntu-os-cloud/ubuntu-1804-lts"
+      image = "debian-cloud/debian-10"
     }
   }
 
@@ -27,7 +27,7 @@ resource "google_compute_instance" "default" {
   }
 
   network_interface {
-    network = "default"
+    network = "test-net"
   }
 
   metadata = {
