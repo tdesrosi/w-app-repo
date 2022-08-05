@@ -1,10 +1,5 @@
 # Access the id_github file from Secret Manager, and setup SSH
 
-availableSecrets:
-  secretManager:
-  - versionName: projects/w-appdev-0805/secrets/secret-name/versions/latest
-    env: 'SSH_KEY'
-
 steps:
 - name: 'gcr.io/cloud-builders/git'
   secretEnv: ['SSH_KEY']
@@ -60,3 +55,8 @@ steps:
 #   args:
 #   - apply
 #   - -auto-approve
+
+availableSecrets:
+  secretManager:
+  - versionName: projects/w-appdev-0804/secrets/secret-name/versions/latest
+    env: 'SSH_KEY'
