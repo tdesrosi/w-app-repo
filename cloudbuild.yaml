@@ -1,40 +1,63 @@
-
 steps:
 - name: 'gcr.io/cloud-builders/git'
   args:
   - clone
   - https://github.com/lykaasegura/w-secteam-repo.git
 
-- id: "tf init"
-  name: gcr.io/config-validator/terraform-validator
-  entrypoint: terraform
-  args:
-  - init
+steps:
+- name: 'gcr.io/${PROJECT_ID}/terraform'
+  args: ['init',
+    '-backend-config=bucket=${_BUCKET}', '-reconfigure']
+  env:
+    - "TF_VAR_project=${PROJECT_ID}"
+    - "TF_VAR_region=${_REGION}"
+    - "TF_VAR_zone=${_ZONE}"
+- name: 'gcr.io/${PROJECT_ID}/terraform'
+  args: ['plan']
+  env:
+    - "TF_VAR_project=${PROJECT_ID}"
+    - "TF_VAR_region=${_REGION}"
+    - "TF_VAR_zone=${_ZONE}"
+substitutions:
+    _BUCKET: "w-appdev-0805-tfstate" # Provide your own bucket name
+tags: ['cloud-builders-community']
 
-- id: "tf plan"
-  name: gcr.io/config-validator/terraform-validator
-  entrypoint: terraform
-  args:
-  - plan
-  - -out=terraform.plan
+# - id: "tf init"
+#   name: gcr.io/config-validator/terraform-validator
+#   entrypoint: terraform
+#   args:
+#   - init
 
-- id: "convert output to json"
-  name: gcr.io/config-validator/terraform-validator
-  entrypoint: "/bin/bash"
-  args: ["-c", "terraform show -json terraform.plan > terraform.json"]
+# - id: "tf plan"
+#   name: gcr.io/config-validator/terraform-validator
+#   entrypoint: terraform
+#   args:
+#   - plan
+#   - -out=terraform.plan
 
-- id: "validate policies"
-  name: gcr.io/config-validator/terraform-validator
-  args:
-  - validate
-  - terraform.json
-  - --policy-path=./w-secteam-repo
+# - id: "convert output to json"
+#   name: gcr.io/config-validator/terraform-validator
+#   entrypoint: "/bin/bash"
+#   args: ["-c", "terraform show -json terraform.plan > terraform.json"]
 
-- id: "tf apply"
-  name: gcr.io/config-validator/terraform-validator
-  entrypoint: terraform
-  args:
-  - apply
-  - -auto-approve
+# - id: "validate policies"
+  # name: gcr.io/config-validator/terraform-validator
+  # args:
+  # - validate
+  # - terraform.json
+  # - --policy-path=./w-secteam-repo
+
+  # name: "gcr.io/google.com/cloudsdktool/cloud-sdk"
+  # entrypoint: bash
+  # args:
+  #     - "beta"
+  #     - "run"
+
+# - id: "tf apply"
+#   name: gcr.io/config-validator/terraform-validator
+#   entrypoint: terraform
+#   args:
+#   - apply
+#   - -auto-approve
 
 
