@@ -13,7 +13,7 @@ steps:
 - id: 'tf init'
   name: 'hashicorp/terraform:1.0.0'
   entrypoint: 'sh'
-  args: ["init"]
+  args: ["terraform init"]
 
 
 # - name: gcr.io/config-validator/terraform-validator
