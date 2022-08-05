@@ -1,46 +1,22 @@
 steps:
 
 - id: "tf init"
-  name: "hashicorp/terraform:1.0.0"
-  entrypoint: "sh"
+  name: gcr.io/config-validator/terraform-validator
+  entrypoint: "/bin/bash"
   args:
-  - "-c"
-  - |
-      echo "***********************"
-      echo "$BRANCH_NAME"
-      echo "***********************"
-      terraform init
+  - init
 
 - id: "tf plan"
-  name: "hashicorp/terraform:1.0.0"
-  entrypoint: "sh"
+  name: gcr.io/config-validator/terraform-validator
+  entrypoint: terraform
   args:
-  - "-c"
-  - |
-      echo "***********************"
-      echo "PLANNING"
-      echo "***********************"
-      terraform plan -out=test.tfplan
-
-  # name: gcr.io/config-validator/terraform-validator
-  # entrypoint: terraform
-  # args:
-  # - plan
-  # - -out=terraform.plan
+  - plan
+  - -out=terraform.plan
 
 - id: "convert output to json"
-  # name: gcr.io/config-validator/terraform-validator
-  # entrypoint: "/bin/bash"
-  # args: ["-c", "terraform show -json terraform.plan > terraform.json"]
-  name: "hashicorp/terraform:1.0.0"
-  entrypoint: "sh"
-  args:
-  - "-c"
-  - |
-      echo "***********************"
-      echo "CONVERTING"
-      echo "***********************"
-      terraform show -json ./test.tfplan > ./tfplan.json
+  name: gcr.io/config-validator/terraform-validator
+  entrypoint: "/bin/bash"
+  args: ["-c", "terraform show -json terraform.plan > terraform.json"]
 
 - id: "validate policies"
   name: gcr.io/config-validator/terraform-validator
@@ -50,12 +26,17 @@ steps:
   - --policy-path=./policy-folder
 
 - id: "tf apply"
-  name: "hashicorp/terraform:1.0.0"
-  entrypoint: "sh"
+  # name: "hashicorp/terraform:1.0.0"
+  # entrypoint: "sh"
+  # args:
+  # - "-c"
+  # - |
+  #     echo "***********************"
+  #     echo "$BRANCH_NAME"
+  #     echo "***********************"
+  #     terraform apply -auto-approve
+  name: gcr.io/config-validator/terraform-validator
+  entrypoint: "/bin/bash"
   args:
-  - "-c"
-  - |
-      echo "***********************"
-      echo "$BRANCH_NAME"
-      echo "***********************"
-      terraform init
+  - apply
+  - -auto-approve
