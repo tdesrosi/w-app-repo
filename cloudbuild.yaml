@@ -15,17 +15,17 @@ steps:
 #   entrypoint: "/bin/bash"
 #   args: ['-c', 'terraform show -json terraform.plan > terraform.json']
 
-- name: 'gcr.io/${PROJECT_ID}/terraform'
+- name: 'gcr.io/cloud-builders/terraform'
   args: ['init']
   env:
     - "TF_VAR_project=${PROJECT_ID}"
 
-- name: 'gcr.io/${PROJECT_ID}/terraform'
+- name: 'gcr.io/cloud-builders/terraform'
   args: ['plan']
   env:
     - "TF_VAR_project=${PROJECT_ID}"
 
-- name: 'gcr.io/${PROJECT_ID}/terraform'
+- name: 'gcr.io/cloud-builders/terraform'
   args: ['show', 'json', '>', "./tfplan.json"]
   env:
     - "TF_VAR_project=${PROJECT_ID}"
