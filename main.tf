@@ -32,7 +32,7 @@ resource "google_compute_instance" "default" {
   metadata_startup_script = "echo hi > /test.txt"
 }
 
-resource "google_compute_instance" "default" {
+resource "google_compute_instance" "default-2" {
   name         = "test-2"
   machine_type = "e2-medium"
   zone         = "us-central1-a"
