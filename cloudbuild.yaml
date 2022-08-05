@@ -1,44 +1,42 @@
 steps:
 
-- id: 'tf init'
-  name: 'hashicorp/terraform:1.0.0'
-  entrypoint: 'sh'
+- id: "tf init"
+  name: "hashicorp/terraform:1.0.0"
+  entrypoint: "sh"
   args:
-  - '-c'
+  - "-c"
   - |
       echo "***********************"
       echo "$BRANCH_NAME"
       echo "***********************"
       terraform init
 
-# - name: gcr.io/config-validator/terraform-validator
-#   entrypoint: terraform
-#   args:
-#   - init
+- id: "tf plan"
+  name: gcr.io/config-validator/terraform-validator
+  entrypoint: terraform
+  args:
+  - plan
+  - -out=terraform.plan
 
-# - name: gcr.io/config-validator/terraform-validator
-#   entrypoint: terraform
-#   args:
-#   - plan
-#   - -out=terraform.plan
+- id: "convert output to json"
+  name: gcr.io/config-validator/terraform-validator
+  entrypoint: "/bin/bash"
+  args: ["-c", "terraform show -json terraform.plan > terraform.json"]
 
-# - name: gcr.io/config-validator/terraform-validator
-#   entrypoint: "/bin/bash"
-#   args: ["-c", "terraform show -json terraform.plan > terraform.json"]
+- id: "validate policies"
+  name: gcr.io/config-validator/terraform-validator
+  args:
+  - validate
+  - terraform.json
+  - --policy-path=./policy-folder
 
-
-# - name: gcr.io/config-validator/terraform-validator
-#   args:
-#   - validate
-#   - terraform.json
-#   - --policy-path=./policy-folder
-
-# # - name: "gcr.io/${PROJECT_ID}/terraform"
-# #   args: ["apply", "-auto-approve"]
-# #   env:
-# #     - "TF_VAR_project-name=${PROJECT_ID}"
-
-# - id: "tf apply"
-#   name: "hashicorp/terraform:1.0.0"
-#   entrypoint: "sh"
-#   args: ["apply", "auto-approve"]
+- id: "tf apply"
+  name: "hashicorp/terraform:1.0.0"
+  entrypoint: "sh"
+  args:
+  - "-c"
+  - |
+      echo "***********************"
+      echo "$BRANCH_NAME"
+      echo "***********************"
+      terraform init
