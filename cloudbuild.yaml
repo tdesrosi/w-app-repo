@@ -1,7 +1,7 @@
-availableSecrets:
-  secretManager:
-  - versionName: projects/w-appdev-0805/secrets/secret-name/versions/latest
-    env: 'SSH_KEY'
+# availableSecrets:
+#   secretManager:
+#   - versionName: projects/w-appdev-0805/secrets/secret-name/versions/latest
+#     env: 'SSH_KEY'
 
 steps:
 # - name: 'gcr.io/cloud-builders/git'
