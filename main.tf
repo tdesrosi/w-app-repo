@@ -11,7 +11,7 @@ resource "google_compute_instance" "default" {
   name         = "test"
   machine_type = "e2-medium"
   zone         = "us-central1-a"
-  project = "w-appdev-0805"
+  project = "w-targetapp-dev-0805"
 
   tags = ["foo", "bar"]
 
@@ -33,7 +33,7 @@ resource "google_compute_instance" "default" {
 }
 
 # resource "google_storage_bucket" "failbucket" {
-#   project =  "w-appdev-0805"
+#   project =  "w-targetapp-dev-0805"
 #   name          = "aintworking-0805"
 #   location      = "EU"
 # }
