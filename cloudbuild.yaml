@@ -2,7 +2,7 @@ steps:
 
 - id: "tf init"
   name: gcr.io/config-validator/terraform-validator
-  entrypoint: "/bin/bash"
+  entrypoint: terraform
   args:
   - init
 
@@ -36,7 +36,7 @@ steps:
   #     echo "***********************"
   #     terraform apply -auto-approve
   name: gcr.io/config-validator/terraform-validator
-  entrypoint: "/bin/bash"
+  entrypoint: terraform
   args:
   - apply
   - -auto-approve
