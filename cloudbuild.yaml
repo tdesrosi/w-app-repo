@@ -21,7 +21,7 @@ steps:
 - name: 'gcr.io/cloud-builders/git'
   args:
   - clone
-  - git@github.com:lykaasegura/w-secteam-repo.git
+  - https://github.com/lykaasegura/w-app-repo
   volumes:
   - name: 'ssh'
     path: /root/.ssh
