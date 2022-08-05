@@ -24,7 +24,7 @@ steps:
   - git@github.com:lykaasegura/w-secteam-repo.git
   volumes:
   - name: 'ssh'
-    path: /root/.ssh/
+    path: /root/.ssh
 
 - id: "tf init"
   name: gcr.io/config-validator/terraform-validator
