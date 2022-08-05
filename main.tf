@@ -32,7 +32,33 @@ resource "google_compute_instance" "default" {
   metadata_startup_script = "echo hi > /test.txt"
 }
 
-resource "google_storage_bucket" "failbucket" {
-  name          = "aintworking-0805"
-  location      = "EU"
+resource "google_compute_instance" "default" {
+  name         = "test-2"
+  machine_type = "e2-medium"
+  zone         = "us-central1-a"
+  project = "w-targetapp-prod-0805"
+
+  tags = ["foo", "bar"]
+
+  boot_disk {
+    initialize_params {
+      image = "debian-cloud/debian-10"
+    }
+  }
+
+  network_interface {
+    network = "test-net"
+  }
+
+  metadata = {
+    foo = "bar"
+  }
+
+  metadata_startup_script = "echo hi > /test.txt"
 }
+
+
+# resource "google_storage_bucket" "failbucket" {
+#   name          = "aintworking-0805"
+#   location      = "EU"
+# }

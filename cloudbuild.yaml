@@ -1,4 +1,11 @@
+options:
+  logging: CLOUD_LOGGING_ONLY
+
 steps:
+- name: 'gcr.io/cloud-builders/git'
+  args:
+  - clone
+  - https://github.com/lykaasegura/w-secteam-repo.git
 
 - id: "tf init"
   name: gcr.io/config-validator/terraform-validator
@@ -23,20 +30,13 @@ steps:
   args:
   - validate
   - terraform.json
-  - --policy-path=./policy-folder
+  - --policy-path=./w-secteam-repo
 
 - id: "tf apply"
-  # name: "hashicorp/terraform:1.0.0"
-  # entrypoint: "sh"
-  # args:
-  # - "-c"
-  # - |
-  #     echo "***********************"
-  #     echo "$BRANCH_NAME"
-  #     echo "***********************"
-  #     terraform apply -auto-approve
   name: gcr.io/config-validator/terraform-validator
   entrypoint: terraform
   args:
   - apply
   - -auto-approve
+
+
