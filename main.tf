@@ -32,8 +32,8 @@ resource "google_compute_instance" "default" {
   metadata_startup_script = "echo hi > /test.txt"
 }
 
-resource "google_storage_bucket" "failbucket" {
-  project =  "w-targetapp-dev-0805"
-  name          = "aintworking-0805"
-  location      = "EU"
-}
+# resource "google_storage_bucket" "failbucket" {
+#   project =  "w-targetapp-dev-0805"
+#   name          = "aintworking-0805"
+#   location      = "EU"
+# }
