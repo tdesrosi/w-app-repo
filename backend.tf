@@ -15,8 +15,14 @@
 # limitations under the License.
 
 
+# terraform {
+#   backend "gcs" {
+#     bucket = "w-demo-0809-dev-state-bucket"
+#   }
+# }
+
 terraform {
   backend "gcs" {
-    bucket = "w-demo-0809-dev-state-bucket"
+    bucket = "w-appdev-0805-tfstate"
   }
 }
