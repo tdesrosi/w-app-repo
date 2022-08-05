@@ -1,10 +1,11 @@
+# Access the id_github file from Secret Manager, and setup SSH
+
 availableSecrets:
   secretManager:
-  - versionName: projects/w-appdev-0804/secrets/github/versions/latest
+  - versionName: projects/w-appdev-0805/secrets/secret-name/versions/latest
     env: 'SSH_KEY'
 
 steps:
-# Access the id_github file from Secret Manager, and setup SSH
 - name: 'gcr.io/cloud-builders/git'
   secretEnv: ['SSH_KEY']
   entrypoint: 'bash'
@@ -28,24 +29,34 @@ steps:
   - name: 'ssh'
     path: /root/.ssh
 
-- name: gcr.io/config-validator/terraform-validator
+- id: "tf init"
+  name: gcr.io/config-validator/terraform-validator
   entrypoint: terraform
   args:
   - init
 
-- name: gcr.io/config-validator/terraform-validator
+- id: "tf plan"
+  name: gcr.io/config-validator/terraform-validator
   entrypoint: terraform
   args:
   - plan
   - -out=terraform.plan
 
-- name: gcr.io/config-validator/terraform-validator
+- id: "convert output to json"
+  name: gcr.io/config-validator/terraform-validator
   entrypoint: "/bin/bash"
-  args: ['-c', 'terraform show -json terraform.plan > terraform.json']
+  args: ["-c", "terraform show -json terraform.plan > terraform.json"]
 
-- name: gcr.io/config-validator/terraform-validator
+- id: "validate policies"
+  name: gcr.io/config-validator/terraform-validator
   args:
   - validate
   - terraform.json
-  - --policy-path=./w-secteam-repo/policy-library/
+  - --policy-path=./w-secteam-repo/policy-folder
 
+# - id: "tf apply"
+#   name: gcr.io/config-validator/terraform-validator
+#   entrypoint: terraform
+#   args:
+#   - apply
+#   - -auto-approve
