@@ -1,16 +1,9 @@
-availableSecrets:
-  secretManager:
-  - versionName: projects/w-appdev-0805/secrets/cloudbuild-git/versions/latest
-    env: 'SSH_KEY'
 
 steps:
 - name: 'gcr.io/cloud-builders/git'
   args:
   - clone
   - https://github.com/lykaasegura/w-secteam-repo.git
-  volumes:
-  - name: 'ssh'
-    path: /root/.ssh
 
 # - id: "tf init"
 #   name: gcr.io/config-validator/terraform-validator
