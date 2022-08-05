@@ -1,3 +1,6 @@
+options:
+  logging: CLOUD_LOGGING_ONLY
+
 steps:
 - name: 'gcr.io/cloud-builders/git'
   args:
@@ -23,20 +26,11 @@ steps:
   args: ["-c", "terraform show -json terraform.plan > terraform.json"]
 
 - id: "validate policies"
-  # name: gcr.io/config-validator/terraform-validator
-  # args:
-  # - validate
-  # - terraform.json
-  # - --policy-path=./w-secteam-repo
-  name: gcr.io/google.com/cloudsdktool/cloud-sdk
-  entrypoint: gcloud
+  name: gcr.io/config-validator/terraform-validator
   args:
-    - beta
-    - terraform
-    - vet
-    - terraform.json
-    - --policy-library=./w-secteam-repo
-    - --format=json
+  - validate
+  - terraform.json
+  - --policy-path=./w-secteam-repo
 
 - id: "tf apply"
   name: gcr.io/config-validator/terraform-validator
