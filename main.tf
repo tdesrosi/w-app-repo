@@ -58,5 +58,5 @@ resource "google_storage_bucket" "test-storage-bucket" {
 resource "google_project_iam_member" "storageAdminSABinding" {
   project = "w-app-targetapp-prod-0805"
   role    = "roles/storage.admin"
-  member  = "demo-sa@w-app-targetapp-prod-0805.iam.gserviceaccount.com"
+  member  = "serviceAccount:demo-sa@w-app-targetapp-prod-0805.iam.gserviceaccount.com"
 }
