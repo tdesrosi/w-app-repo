@@ -17,6 +17,6 @@
 
 terraform {
   backend "gcs" {
-    bucket = "w-demo-0809-prod-state-bucket"
+    bucket = "w-appdev-0805-prod-tfstate"
   }
 }
