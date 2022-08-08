@@ -50,7 +50,7 @@ resource "google_project_iam_binding" "projectIAMAdmin" {
 
 # resource "google_storage_bucket" "test-storage-bucket" {
 #   project = "w-app-targetapp-prod-0805"
-#   name          = "w-test-storage-prd-0909-test"
+#   name          = "w-test-storage-prd-0909"
 #   location      = "US"
 #   force_destroy = true
 # }
