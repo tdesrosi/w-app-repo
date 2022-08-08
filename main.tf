@@ -60,8 +60,8 @@ resource "google_service_account" "storageAdminSA" {
   display_name = "sa-storage-admin"
 }
 
-resource "google_project_iam_member" "storageAdminSABinding" {
-  project = "w-targetapp-prod-0805"
-  role    = "roles/storage.admin"
-  member  = "serviceAccount:${google_service_account.storageAdminSA.email}"
-}
+# resource "google_project_iam_member" "storageAdminSABinding" {
+#   project = "w-targetapp-prod-0805"
+#   role    = "roles/storage.admin"
+#   member  = "serviceAccount:${google_service_account.storageAdminSA.email}"
+# }
