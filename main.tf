@@ -1,13 +1,13 @@
 # FAILURE TEST SCENARIO
 
-resource "google_project_iam_binding" "orgSecurityPolicy" {
-  project = "w-targetapp-prod-0805"
-  role    = "roles/compute.orgSecurityPolicyAdmin"
+# resource "google_project_iam_binding" "orgSecurityPolicy" {
+#   project = "w-targetapp-prod-0805"
+#   role    = "roles/compute.orgSecurityPolicyAdmin"
 
-  members = [
-    "user:lyka@lykasegura.joonix.net"
-  ]
-}
+#   members = [
+#     "user:lyka@lykasegura.joonix.net"
+#   ]
+# }
 
 resource "google_project_iam_binding" "editorRole" {
   project = "w-targetapp-prod-0805"
