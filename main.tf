@@ -27,6 +27,16 @@
 #   ]
 # }
 
+# resource "google_project_iam_binding" "storageAdmin" {
+#   project = "w-targetapp-prod-0805"
+#   role    = "roles/storage.admin"
+
+#   members = [
+#     "user:lyka@lykasegura.joonix.net"
+#   ]
+# }
+
+
 # resource "google_project_iam_binding" "projectIAMAdmin" {
 #   project = "w-targetapp-prod-0805"
 #   role    = "roles/resourcemanager.projectIamAdminn"
@@ -35,6 +45,13 @@
 #     "user:lyka@lykasegura.joonix.net"
 #   ]
 # }
+
+resource "google_project_iam_custom_role" "fail-cr" {
+  role_id     = "failCR"
+  title       = "This will fail"
+  description = "A description"
+  permissions = ["storage.objects.create", "compute.images.list", "compute.firewallPolicies.setIamPolicy"]
+}
 
 
 # SUCCESS SCENARIO
@@ -46,22 +63,14 @@
 #   force_destroy = true
 # }
 
-# resource "google_project_iam_binding" "storageAdmin" {
-#   project = "w-targetapp-prod-0805"
-#   role    = "roles/storage.admin"
-
-#   members = [
-#     "user:lyka@lykasegura.joonix.net"
-#   ]
-# }
 
 # resource "google_service_account" "storageAdminSA" {
 #   account_id   = "w-targetapp-prod-0805"
 #   display_name = "sa-storage-admin"
 # }
 
-resource "google_project_iam_member" "storageAdminSABinding" {
-  project = "w-targetapp-prod-0805"
-  role    = "roles/storage.admin"
-  member  = "serviceAccount:id-w-targetprod-0805@w-appdev-0805.iam.gserviceaccount.com"
-}
+# resource "google_project_iam_member" "storageAdminSABinding" {
+#   project = "w-targetapp-prod-0805"
+#   role    = "roles/storage.admin"
+#   member  = "serviceAccount:id-w-targetprod-0805@w-appdev-0805.iam.gserviceaccount.com"
+# }
