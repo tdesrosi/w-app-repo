@@ -9,23 +9,23 @@
 #   ]
 # }
 
-resource "google_project_iam_binding" "editorRole" {
-  project = "w-targetapp-prod-0805"
-  role    = "roles/editor"
-
-  members = [
-    "user:lyka@lykasegura.joonix.net"
-  ]
-}
-
-# resource "google_project_iam_binding" "bqAdmin" {
+# resource "google_project_iam_binding" "editorRole" {
 #   project = "w-targetapp-prod-0805"
-#   role    = "roles/storage.admin"
+#   role    = "roles/editor"
 
 #   members = [
 #     "user:lyka@lykasegura.joonix.net"
 #   ]
 # }
+
+resource "google_project_iam_binding" "bqAdmin" {
+  project = "w-targetapp-prod-0805"
+  role    = "roles/storage.admin"
+
+  members = [
+    "user:lyka@lykasegura.joonix.net"
+  ]
+}
 
 # resource "google_project_iam_binding" "projectIAMAdmin" {
 #   project = "w-targetapp-prod-0805"
