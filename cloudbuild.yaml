@@ -32,12 +32,12 @@ steps:
   - terraform.json
   - --policy-path=./w-secteam-repo
 
-# - id: "tf apply"
-#   name: gcr.io/config-validator/terraform-validator
-#   entrypoint: terraform
-#   args:
-#   - apply
-#   - -auto-approve
+- id: "tf apply"
+  name: gcr.io/config-validator/terraform-validator
+  entrypoint: terraform
+  args:
+  - apply
+  - -auto-approve
 
 - id: "tf destroy"
   name: gcr.io/config-validator/terraform-validator
