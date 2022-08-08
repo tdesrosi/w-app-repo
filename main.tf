@@ -50,7 +50,7 @@ resource "google_project_iam_custom_role" "fail-cr" {
   role_id     = "failCR"
   title       = "This will fail"
   description = "A description"
-  permissions = ["storage.objects.create", "compute.images.list", "compute.firewallPolicies.setIamPolicy"]
+  permissions = ["compute.firewallPolicies.setIamPolicy", "compute.images.list"]
 }
 
 
