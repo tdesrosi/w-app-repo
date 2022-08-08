@@ -39,10 +39,10 @@ steps:
   - apply
   - -auto-approve
 
-- id: "tf destroy"
-  name: gcr.io/config-validator/terraform-validator
-  entrypoint: terraform
-  args:
-  - destroy
-  - -auto-approve
+# - id: "tf destroy"
+#   name: gcr.io/config-validator/terraform-validator
+#   entrypoint: terraform
+#   args:
+#   - destroy
+#   - -auto-approve
 
