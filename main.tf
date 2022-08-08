@@ -63,5 +63,5 @@ resource "google_service_account" "storageAdminSA" {
 resource "google_project_iam_member" "storageAdminSABinding" {
   project = "w-targetapp-prod-0805"
   role    = "roles/storage.admin"
-  member  = "serviceAccount:${google_service_account.storageAdminSABinding.email}"
+  member  = "serviceAccount:${google_service_account.storageAdminSA.email}"
 }
