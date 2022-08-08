@@ -55,13 +55,13 @@
 #   ]
 # }
 
-resource "google_service_account" "storageAdminSA" {
-  account_id   = "w-targetapp-prod-0805"
-  display_name = "sa-storage-admin"
-}
+# resource "google_service_account" "storageAdminSA" {
+#   account_id   = "w-targetapp-prod-0805"
+#   display_name = "sa-storage-admin"
+# }
 
 resource "google_project_iam_member" "storageAdminSABinding" {
   project = "w-targetapp-prod-0805"
   role    = "roles/storage.admin"
-  member  = "serviceAccount:${google_service_account.storageAdminSA.email}"
+  member  = "serviceAccount:id-w-targetprod-0805@w-appdev-0805.iam.gserviceaccount.com"
 }
