@@ -48,12 +48,21 @@ resource "google_project_iam_binding" "projectIAMAdmin" {
 
 # SUCCESS SCENARIO
 
+<<<<<<< Updated upstream
 # resource "google_storage_bucket" "test-storage-bucket" {
 # 	project = "w-app-targetapp-dev-0805"
 #   name          = "w-test-storage-0809-455"
 #   location      = "US"
 #   force_destroy = true
 # }
+=======
+resource "google_storage_bucket" "test-storage-bucket" {
+  project = "w-app-targetapp-prod-0805"
+  name          = "w-test-storage-prd-demo"
+  location      = "US"
+  force_destroy = true
+}
+>>>>>>> Stashed changes
 
 # resource "google_project_iam_member" "storageAdminSABinding" {
 #   project = "w-app-targetapp-dev-0805"
