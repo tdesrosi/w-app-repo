@@ -13,36 +13,36 @@ steps:
   args:
   - init
 
-- id: "tf plan"
-  name: gcr.io/config-validator/terraform-validator
-  entrypoint: terraform
-  args:
-  - plan
-  - -out=terraform.plan
-
-- id: "convert output to json"
-  name: gcr.io/config-validator/terraform-validator
-  entrypoint: "/bin/bash"
-  args: ["-c", "terraform show -json terraform.plan > terraform.json"]
-
-- id: "validate policies"
-  name: gcr.io/config-validator/terraform-validator
-  args:
-  - validate
-  - terraform.json
-  - --policy-path=./w-secteam-repo
-
-- id: "tf apply"
-  name: gcr.io/config-validator/terraform-validator
-  entrypoint: terraform
-  args:
-  - apply
-  - -auto-approve
-
-# - id: "tf destroy"
+# - id: "tf plan"
 #   name: gcr.io/config-validator/terraform-validator
 #   entrypoint: terraform
 #   args:
-#   - destroy
+#   - plan
+#   - -out=terraform.plan
+
+# - id: "convert output to json"
+#   name: gcr.io/config-validator/terraform-validator
+#   entrypoint: "/bin/bash"
+#   args: ["-c", "terraform show -json terraform.plan > terraform.json"]
+
+# - id: "validate policies"
+#   name: gcr.io/config-validator/terraform-validator
+#   args:
+#   - validate
+#   - terraform.json
+#   - --policy-path=./w-secteam-repo
+
+# - id: "tf apply"
+#   name: gcr.io/config-validator/terraform-validator
+#   entrypoint: terraform
+#   args:
+#   - apply
 #   - -auto-approve
+
+- id: "tf destroy"
+  name: gcr.io/config-validator/terraform-validator
+  entrypoint: terraform
+  args:
+  - destroy
+  - -auto-approve
 
