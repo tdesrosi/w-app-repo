@@ -7,11 +7,11 @@ steps:
   - clone
   - https://github.com/lykaasegura/w-secteam-repo.git
 
-# - id: "tf init"
-#   name: gcr.io/config-validator/terraform-validator
-#   entrypoint: terraform
-#   args:
-#   - init
+- id: "tf init"
+  name: gcr.io/config-validator/terraform-validator
+  entrypoint: terraform
+  args:
+  - init
 
 # - id: "tf plan"
 #   name: gcr.io/config-validator/terraform-validator
