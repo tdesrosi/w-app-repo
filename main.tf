@@ -49,8 +49,8 @@
 # SUCCESS SCENARIO
 
 resource "google_storage_bucket" "test-storage-bucket" {
-	project = "w-app-targetapp-dev-0805"
-  name          = "w-test-storage-0809-455"
+  project = "w-app-targetapp-dev-0805"
+  name          = "w-test-storage-0823"
   location      = "US"
   force_destroy = true
 }
