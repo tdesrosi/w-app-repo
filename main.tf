@@ -50,7 +50,7 @@
 
 resource "google_storage_bucket" "test-storage-bucket" {
   project = "w-app-targetapp-prod-0805"
-  name          = "w-test-storage-prd-demo"
+  name          = "w-test-storage-prd-demo-0823"
   location      = "US"
   force_destroy = true
 }
