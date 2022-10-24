@@ -37,26 +37,26 @@
 # }
 
 
-# resource "google_project_iam_binding" "projectIAMAdmin" {
-#   project = "w-app-targetapp-prod-0805"
-#   role    = "roles/resourcemanager.projectIamAdminn"
+resource "google_project_iam_binding" "projectIAMAdmin" {
+  project = "w-app-targetapp-prod-0805"
+  role    = "roles/resourcemanager.projectIamAdminn"
 
-#   members = [
-#     "user:lyka@lykasegura.joonix.net"
-#   ]
-# }
+  members = [
+    "user:thomas@arborist.joonix.net"
+  ]
+}
 
 # SUCCESS SCENARIO
 
 resource "google_storage_bucket" "test-storage-bucket" {
-  project = "w-app-targetapp-prod-0805"
-  name          = "w-test-storage-prd-demo-0823"
+  project = "w-secteam-target-prod"
+  name          = "w-secteam-target-prod"
   location      = "US"
   force_destroy = true
 }
 
 resource "google_project_iam_member" "storageAdminSABinding" {
-  project = "w-app-targetapp-prod-0805"
+  project = "w-secteam-target-prod"
   role    = "roles/storage.admin"
-  member  = "serviceAccount:demo-sa@w-app-targetapp-prod-0805.iam.gserviceaccount.com"
+  member  = "serviceAccount:dev-env@w-secteam-app-pipeline.iam.gserviceaccount.com"
 }

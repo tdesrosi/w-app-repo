@@ -2,7 +2,7 @@
 
 For the purposes of the demo, I prepared the environment with the following:
 - app-pipeline project
-	- 2 GCS buckets for the dev and prod state files
+	- 2 GCS buckets for the dev and prod state files (responsible for deploying to dev env and one responsible to deploy to prod)
 	- 2 service accounts with the permissions necessary in their target environment
 	- connected this repo to cloudbuild
 	- 2 CloudBuild triggers. One for each branch
