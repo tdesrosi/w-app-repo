@@ -38,7 +38,7 @@
 
 
 resource "google_project_iam_binding" "projectIAMAdmin" {
-  project = "w-app-targetapp-prod-0805"
+  project = "w-secteam-target-prod"
   role    = "roles/resourcemanager.projectIamAdminn"
 
   members = [
