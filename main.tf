@@ -55,8 +55,8 @@ resource "google_storage_bucket" "test-storage-bucket" {
   force_destroy = true
 }
 
-resource "google_project_iam_member" "storageAdminSABinding" {
-  project = "w-secteam-target-prod"
-  role    = "roles/storage.admin"
-  member  = "serviceAccount:dev-env@w-secteam-app-pipeline.iam.gserviceaccount.com"
-}
+# resource "google_project_iam_member" "storageAdminSABinding" {
+#   project = "w-secteam-target-prod"
+#   role    = "roles/storage.admin"
+#   member  = "serviceAccount:dev-env@w-secteam-app-pipeline.iam.gserviceaccount.com"
+# }
