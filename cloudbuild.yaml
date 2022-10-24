@@ -5,7 +5,7 @@ steps:
 - name: 'gcr.io/cloud-builders/git'
   args:
   - clone
-  - https://github.com/tdesrosi/w-secteam-repo.git
+  - https://github.com/tdesrosi/w-app-repo.git
 
 - id: "tf init"
   name: gcr.io/config-validator/terraform-validator

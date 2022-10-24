@@ -37,14 +37,14 @@
 # }
 
 
-resource "google_project_iam_binding" "projectIAMAdmin" {
-  project = "w-secteam-target-prod"
-  role    = "roles/resourcemanager.projectIamAdminn"
+# resource "google_project_iam_binding" "projectIAMAdmin" {
+#   project = "w-secteam-target-prod"
+#   role    = "roles/resourcemanager.projectIamAdminn"
 
-  members = [
-    "user:thomas@arborist.joonix.net"
-  ]
-}
+#   members = [
+#     "user:thomas@arborist.joonix.net"
+#   ]
+# }
 
 # SUCCESS SCENARIO
 
