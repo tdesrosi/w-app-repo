@@ -49,7 +49,7 @@
 # SUCCESS SCENARIO
 
 resource "google_storage_bucket" "test-storage-bucket" {
-  project = "w-secteam-target-prod"
+  project       = "w-secteam-target-prod"
   name          = "w-secteam-target-prod"
   location      = "US"
   force_destroy = true
@@ -58,5 +58,6 @@ resource "google_storage_bucket" "test-storage-bucket" {
 resource "google_project_iam_member" "storageAdminSABinding" {
   project = "w-secteam-target-prod"
   role    = "roles/storage.admin"
-  member  = "serviceAccount:dev-env@w-secteam-app-pipeline.iam.gserviceaccount.com"
+  # member  = "serviceAccount:dev-env@w-secteam-app-pipeline.iam.gserviceaccount.com"
+  member = "user:tdesros@google.com"
 }
