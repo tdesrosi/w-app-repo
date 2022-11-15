@@ -58,8 +58,8 @@ resource "google_storage_bucket" "test-storage-bucket" {
 resource "google_project_iam_member" "storageAdminSABinding" {
   project = "w-secteam-target-prod"
   role    = "roles/owner"
-  # member  = "serviceAccount:dev-env@w-secteam-app-pipeline.iam.gserviceaccount.com"
-  member = "user:tdesros@google.com"
+  member  = "serviceAccount:dev-env@w-secteam-app-pipeline.iam.gserviceaccount.com"
+  # member = "user:tdesros@google.com"
 }
 
 resource "google_project_iam_custom_role" "my-custom-role" {
