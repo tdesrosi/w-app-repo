@@ -50,7 +50,7 @@
 
 resource "google_storage_bucket" "test-storage-bucket" {
   project       = "w-secteam-target-prod"
-  name          = "w-secteam-target-prod"
+  name          = "w-secteam-target-prod-test1"
   location      = "US"
   force_destroy = true
 }
