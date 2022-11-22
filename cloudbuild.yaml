@@ -5,8 +5,7 @@ steps:
   - name: "gcr.io/cloud-builders/git"
     args:
       - clone
-      - https://github.com/tdesrosi/terraform-security-with-opa.git
-
+      - "https://github.com/tdesrosi/gcp-terraform-config-validator.git"
   - id: "tf init"
     name: gcr.io/config-validator/terraform-validator
     entrypoint: terraform
@@ -30,7 +29,7 @@ steps:
     args:
       - validate
       - terraform.json
-      - --policy-path=./terraform-security-with-opa
+      - --policy-path=./gcp-terraform-config-validator
 
   - id: "tf apply"
     name: gcr.io/config-validator/terraform-validator
