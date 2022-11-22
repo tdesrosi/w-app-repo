@@ -17,6 +17,6 @@
 
 terraform {
   backend "gcs" {
-    bucket = "w-secteam-prod-state"
+    bucket = "w-secteam-prod-state-test1"
   }
 }

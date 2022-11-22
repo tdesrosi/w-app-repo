@@ -2,49 +2,46 @@ options:
   logging: CLOUD_LOGGING_ONLY
 
 steps:
-- name: 'gcr.io/cloud-builders/git'
-  args:
-  - clone
-  - https://github.com/tdesrosi/w-secteam-repo.git
+  - name: "gcr.io/cloud-builders/git"
+    args:
+      - clone
+      - https://github.com/tdesrosi/terraform-security-with-opa.git
 
-- id: "tf init"
-  name: gcr.io/config-validator/terraform-validator
-  entrypoint: terraform
-  args:
-  - init
+  - id: "tf init"
+    name: gcr.io/config-validator/terraform-validator
+    entrypoint: terraform
+    args:
+      - init
 
-- id: "tf plan"
-  name: gcr.io/config-validator/terraform-validator
-  entrypoint: terraform
-  args:
-  - plan
-  - -out=terraform.plan
+  - id: "tf plan"
+    name: gcr.io/config-validator/terraform-validator
+    entrypoint: terraform
+    args:
+      - plan
+      - -out=terraform.plan
 
-- id: "convert output to json"
-  name: gcr.io/config-validator/terraform-validator
-  entrypoint: "/bin/bash"
-  args: ["-c", "terraform show -json terraform.plan > terraform.json"]
+  - id: "convert output to json"
+    name: gcr.io/config-validator/terraform-validator
+    entrypoint: "/bin/bash"
+    args: ["-c", "terraform show -json terraform.plan > terraform.json"]
 
-- id: "validate policies"
-  name: gcr.io/config-validator/terraform-validator
-  args:
-  - validate
-  - terraform.json
-  - --policy-path=./w-secteam-repo
+  - id: "validate policies"
+    name: gcr.io/config-validator/terraform-validator
+    args:
+      - validate
+      - terraform.json
+      - --policy-path=./terraform-security-with-opa
 
-- id: "tf apply"
-  name: gcr.io/config-validator/terraform-validator
-  entrypoint: terraform
-  args:
-  - apply
-  - -auto-approve
-
+  - id: "tf apply"
+    name: gcr.io/config-validator/terraform-validator
+    entrypoint: terraform
+    args:
+      - apply
+      - -auto-approve
 # - id: "tf destroy"
 #   name: gcr.io/config-validator/terraform-validator
 #   entrypoint: terraform
 #   args:
 #   - destroy
 #   - -auto-approve
-
-
 
