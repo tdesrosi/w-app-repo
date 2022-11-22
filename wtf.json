@@ -1,0 +1,521 @@
+{
+    "constraint": {
+        "apiVersion": "constraints.gatekeeper.sh/v1alpha1",
+        "kind": "GCPIAMAllowedPolicyMemberDomainsConstraintV2",
+        "metadata": {
+            "name": "reject_project_reference"
+        },
+        "spec": {
+            "parameters": {
+                "domains": [
+                    "gserviceaccount.com",
+                    "google.com",
+                    "notgoogle.com"
+                ],
+                "member_type_allowlist": []
+            },
+            "severity": "high"
+        }
+    },
+    "review": [
+        {
+            "address": "google_project_iam_binding.iam-service-account-user-12345",
+            "change": {
+                "actions": [
+                    "create"
+                ],
+                "after": {
+                    "condition": [],
+                    "members": [
+                        "serviceAccount:service-12345@notiam.gserviceaccount.com",
+                        "user:bad@notgoogle.com"
+                    ],
+                    "project": "12345",
+                    "role": "roles/iam.serviceAccountUser"
+                },
+                "after_sensitive": {
+                    "condition": [],
+                    "members": [
+                        false,
+                        false
+                    ]
+                },
+                "after_unknown": {
+                    "condition": [],
+                    "etag": true,
+                    "id": true,
+                    "members": [
+                        false,
+                        false
+                    ]
+                },
+                "before": null,
+                "before_sensitive": false
+            },
+            "mode": "managed",
+            "name": "iam-service-account-user-12345",
+            "provider_name": "registry.terraform.io/hashicorp/google",
+            "type": "google_project_iam_binding"
+        },
+        {
+            "address": "google_project_iam_binding.owner-12345",
+            "change": {
+                "actions": [
+                    "create"
+                ],
+                "after": {
+                    "condition": [],
+                    "members": [
+                        "group:admins@google.com",
+                        "user:evil@notgoogle.com",
+                        "user:powerful@google.com"
+                    ],
+                    "project": "12345",
+                    "role": "roles/owner"
+                },
+                "after_sensitive": {
+                    "condition": [],
+                    "members": [
+                        false,
+                        false,
+                        false
+                    ]
+                },
+                "after_unknown": {
+                    "condition": [],
+                    "etag": true,
+                    "id": true,
+                    "members": [
+                        false,
+                        false,
+                        false
+                    ]
+                },
+                "before": null,
+                "before_sensitive": false
+            },
+            "mode": "managed",
+            "name": "owner-12345",
+            "provider_name": "registry.terraform.io/hashicorp/google",
+            "type": "google_project_iam_binding"
+        },
+        {
+            "address": "google_project_iam_binding.sa-cloudasset",
+            "change": {
+                "actions": [
+                    "create"
+                ],
+                "after": {
+                    "condition": [],
+                    "members": [
+                        "serviceAccount:service-186783260185@gcp-sa-cloudasset.iam.gserviceaccount.com"
+                    ],
+                    "project": "186783260185",
+                    "role": "roles/cloudasset.serviceAgent"
+                },
+                "after_sensitive": {
+                    "condition": [],
+                    "members": [
+                        false
+                    ]
+                },
+                "after_unknown": {
+                    "condition": [],
+                    "etag": true,
+                    "id": true,
+                    "members": [
+                        false
+                    ]
+                },
+                "before": null,
+                "before_sensitive": false
+            },
+            "mode": "managed",
+            "name": "sa-cloudasset",
+            "provider_name": "registry.terraform.io/hashicorp/google",
+            "type": "google_project_iam_binding"
+        },
+        {
+            "address": "google_project_iam_binding.sa-cloudasset-1",
+            "change": {
+                "actions": [
+                    "create"
+                ],
+                "after": {
+                    "condition": [],
+                    "members": [
+                        "domain:google.com",
+                        "serviceAccount:cai-292@noble-history-87417.iam.gserviceaccount.com",
+                        "user:specific-@google.com"
+                    ],
+                    "project": "186783260185",
+                    "role": "roles/cloudasset.viewer"
+                },
+                "after_sensitive": {
+                    "condition": [],
+                    "members": [
+                        false,
+                        false,
+                        false
+                    ]
+                },
+                "after_unknown": {
+                    "condition": [],
+                    "etag": true,
+                    "id": true,
+                    "members": [
+                        false,
+                        false,
+                        false
+                    ]
+                },
+                "before": null,
+                "before_sensitive": false
+            },
+            "mode": "managed",
+            "name": "sa-cloudasset-1",
+            "provider_name": "registry.terraform.io/hashicorp/google",
+            "type": "google_project_iam_binding"
+        },
+        {
+            "address": "google_project_iam_binding.sa-cloudasset-2",
+            "change": {
+                "actions": [
+                    "create"
+                ],
+                "after": {
+                    "condition": [],
+                    "members": [
+                        "serviceAccount:forseti-server-gcp-3c922c1@noble-history-87417.iam.gserviceaccount.com",
+                        "serviceAccount:sql-k8s@noble-history-87417.iam.gserviceaccount.com"
+                    ],
+                    "project": "186783260185",
+                    "role": "roles/cloudsql.client"
+                },
+                "after_sensitive": {
+                    "condition": [],
+                    "members": [
+                        false,
+                        false
+                    ]
+                },
+                "after_unknown": {
+                    "condition": [],
+                    "etag": true,
+                    "id": true,
+                    "members": [
+                        false,
+                        false
+                    ]
+                },
+                "before": null,
+                "before_sensitive": false
+            },
+            "mode": "managed",
+            "name": "sa-cloudasset-2",
+            "provider_name": "registry.terraform.io/hashicorp/google",
+            "type": "google_project_iam_binding"
+        },
+        {
+            "address": "google_project_iam_binding.sa-cloudasset-3",
+            "change": {
+                "actions": [
+                    "create"
+                ],
+                "after": {
+                    "condition": [],
+                    "members": [
+                        "serviceAccount:service-186783260185@compute-system.iam.gserviceaccount.com"
+                    ],
+                    "project": "186783260185",
+                    "role": "roles/compute.serviceAgent"
+                },
+                "after_sensitive": {
+                    "condition": [],
+                    "members": [
+                        false
+                    ]
+                },
+                "after_unknown": {
+                    "condition": [],
+                    "etag": true,
+                    "id": true,
+                    "members": [
+                        false
+                    ]
+                },
+                "before": null,
+                "before_sensitive": false
+            },
+            "mode": "managed",
+            "name": "sa-cloudasset-3",
+            "provider_name": "registry.terraform.io/hashicorp/google",
+            "type": "google_project_iam_binding"
+        },
+        {
+            "address": "google_project_iam_binding.sa-cloudasset-4",
+            "change": {
+                "actions": [
+                    "create"
+                ],
+                "after": {
+                    "condition": [],
+                    "members": [
+                        "serviceAccount:service-186783260185@container-engine-robot.iam.gserviceaccount.com"
+                    ],
+                    "project": "186783260185",
+                    "role": "roles/container.serviceAgent"
+                },
+                "after_sensitive": {
+                    "condition": [],
+                    "members": [
+                        false
+                    ]
+                },
+                "after_unknown": {
+                    "condition": [],
+                    "etag": true,
+                    "id": true,
+                    "members": [
+                        false
+                    ]
+                },
+                "before": null,
+                "before_sensitive": false
+            },
+            "mode": "managed",
+            "name": "sa-cloudasset-4",
+            "provider_name": "registry.terraform.io/hashicorp/google",
+            "type": "google_project_iam_binding"
+        },
+        {
+            "address": "google_project_iam_binding.sa-cloudasset-5",
+            "change": {
+                "actions": [
+                    "create"
+                ],
+                "after": {
+                    "condition": [],
+                    "members": [
+                        "serviceAccount:service-186783260185@dataflow-service-producer-prod.iam.gserviceaccount.com"
+                    ],
+                    "project": "186783260185",
+                    "role": "roles/dataflow.serviceAgent"
+                },
+                "after_sensitive": {
+                    "condition": [],
+                    "members": [
+                        false
+                    ]
+                },
+                "after_unknown": {
+                    "condition": [],
+                    "etag": true,
+                    "id": true,
+                    "members": [
+                        false
+                    ]
+                },
+                "before": null,
+                "before_sensitive": false
+            },
+            "mode": "managed",
+            "name": "sa-cloudasset-5",
+            "provider_name": "registry.terraform.io/hashicorp/google",
+            "type": "google_project_iam_binding"
+        },
+        {
+            "address": "google_project_iam_binding.sa-cloudasset-6",
+            "change": {
+                "actions": [
+                    "create"
+                ],
+                "after": {
+                    "condition": [],
+                    "members": [
+                        "serviceAccount:service-186783260185@cloud-filer.iam.gserviceaccount.com"
+                    ],
+                    "project": "186783260185",
+                    "role": "roles/file.serviceAgent"
+                },
+                "after_sensitive": {
+                    "condition": [],
+                    "members": [
+                        false
+                    ]
+                },
+                "after_unknown": {
+                    "condition": [],
+                    "etag": true,
+                    "id": true,
+                    "members": [
+                        false
+                    ]
+                },
+                "before": null,
+                "before_sensitive": false
+            },
+            "mode": "managed",
+            "name": "sa-cloudasset-6",
+            "provider_name": "registry.terraform.io/hashicorp/google",
+            "type": "google_project_iam_binding"
+        },
+        {
+            "address": "google_project_iam_binding.viewer-12345",
+            "change": {
+                "actions": [
+                    "create"
+                ],
+                "after": {
+                    "condition": [],
+                    "members": [
+                        "allAuthenticatedUsers",
+                        "allUsers",
+                        "user:okay@google.com"
+                    ],
+                    "project": "12345",
+                    "role": "roles/viewer"
+                },
+                "after_sensitive": {
+                    "condition": [],
+                    "members": [
+                        false,
+                        false,
+                        false
+                    ]
+                },
+                "after_unknown": {
+                    "condition": [],
+                    "etag": true,
+                    "id": true,
+                    "members": [
+                        false,
+                        false,
+                        false
+                    ]
+                },
+                "before": null,
+                "before_sensitive": false
+            },
+            "mode": "managed",
+            "name": "viewer-12345",
+            "provider_name": "registry.terraform.io/hashicorp/google",
+            "type": "google_project_iam_binding"
+        },
+        {
+            "action_reason": "delete_because_no_resource_config",
+            "address": "google_project_iam_custom_role.my-custom-role",
+            "change": {
+                "actions": [
+                    "delete"
+                ],
+                "after": null,
+                "after_sensitive": false,
+                "after_unknown": {},
+                "before": {
+                    "deleted": false,
+                    "description": "A description",
+                    "id": "projects/w-secteam-target-prod/roles/myCustomRole",
+                    "name": "projects/w-secteam-target-prod/roles/myCustomRole",
+                    "permissions": [
+                        "iam.roles.create",
+                        "iam.roles.delete",
+                        "iam.roles.list"
+                    ],
+                    "project": "w-secteam-target-prod",
+                    "role_id": "myCustomRole",
+                    "stage": "GA",
+                    "title": "My Custom Role"
+                },
+                "before_sensitive": {
+                    "permissions": [
+                        false,
+                        false,
+                        false
+                    ]
+                }
+            },
+            "mode": "managed",
+            "name": "my-custom-role",
+            "provider_name": "registry.terraform.io/hashicorp/google",
+            "type": "google_project_iam_custom_role"
+        },
+        {
+            "action_reason": "delete_because_no_resource_config",
+            "address": "google_project_iam_member.storageAdminSABinding",
+            "change": {
+                "actions": [
+                    "delete"
+                ],
+                "after": null,
+                "after_sensitive": false,
+                "after_unknown": {},
+                "before": {
+                    "condition": [],
+                    "etag": "BwXteKMdryg=",
+                    "id": "w-secteam-target-prod/roles/owner/serviceAccount:prod-env@w-secteam-app-pipeline.iam.gserviceaccount.com",
+                    "member": "serviceAccount:prod-env@w-secteam-app-pipeline.iam.gserviceaccount.com",
+                    "project": "w-secteam-target-prod",
+                    "role": "roles/owner"
+                },
+                "before_sensitive": {
+                    "condition": []
+                }
+            },
+            "mode": "managed",
+            "name": "storageAdminSABinding",
+            "provider_name": "registry.terraform.io/hashicorp/google",
+            "type": "google_project_iam_member"
+        },
+        {
+            "action_reason": "delete_because_no_resource_config",
+            "address": "google_storage_bucket.test-storage-bucket",
+            "change": {
+                "actions": [
+                    "delete"
+                ],
+                "after": null,
+                "after_sensitive": false,
+                "after_unknown": {},
+                "before": {
+                    "cors": [],
+                    "custom_placement_config": [],
+                    "default_event_based_hold": false,
+                    "encryption": [],
+                    "force_destroy": true,
+                    "id": "w-secteam-target-prod-test1",
+                    "labels": {},
+                    "lifecycle_rule": [],
+                    "location": "US",
+                    "logging": [],
+                    "name": "w-secteam-target-prod-test1",
+                    "project": "w-secteam-target-prod",
+                    "requester_pays": false,
+                    "retention_policy": [],
+                    "self_link": "https://www.googleapis.com/storage/v1/b/w-secteam-target-prod-test1",
+                    "storage_class": "STANDARD",
+                    "timeouts": null,
+                    "uniform_bucket_level_access": false,
+                    "url": "gs://w-secteam-target-prod-test1",
+                    "versioning": [],
+                    "website": []
+                },
+                "before_sensitive": {
+                    "cors": [],
+                    "custom_placement_config": [],
+                    "encryption": [],
+                    "labels": {},
+                    "lifecycle_rule": [],
+                    "logging": [],
+                    "retention_policy": [],
+                    "versioning": [],
+                    "website": []
+                }
+            },
+            "mode": "managed",
+            "name": "test-storage-bucket",
+            "provider_name": "registry.terraform.io/hashicorp/google",
+            "type": "google_storage_bucket"
+        }
+    ]
+}

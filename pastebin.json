@@ -1,0 +1,26 @@
+field_values: {
+    "appengine.applications.get",
+    "bigquery.config.get",
+    "bigquery.config.update",
+    "cloudsql.instances.clone",
+    "cloudsql.instances.create",
+    "cloudsql.instances.delete",
+    "cloudsql.instances.export",
+    "cloudsql.instances.failover",
+    "cloudsql.instances.getIamPolicy",
+    "cloudsql.instances.import",
+    "compute.disks.list",
+    "compute.disks.resize",
+    "compute.globalOperations.get",
+    "compute.globalOperations.list",
+    "resourcemanager.projects.list"
+}
+
+resource_names: {
+    "bigquery.config.get",
+    "bigquery.jobs.list",
+    "bigquery.models.list",
+    "bigquery.readsessions.create",
+    "bigquery.savedqueries.get",
+    "bigquery.savedqueries.list"
+}

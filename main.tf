@@ -38,11 +38,11 @@
 
 
 # resource "google_project_iam_binding" "projectIAMAdmin" {
-#   project = "w-secteam-target-prod"
+#   project = "w-app-targetapp-prod-0805"
 #   role    = "roles/resourcemanager.projectIamAdminn"
 
 #   members = [
-#     "user:thomas@arborist.joonix.net"
+#     "user:lyka@lykasegura.joonix.net"
 #   ]
 # }
 
@@ -50,22 +50,21 @@
 
 resource "google_storage_bucket" "test-storage-bucket" {
   project       = "w-secteam-target-prod"
-  name          = "w-secteam-target-prod-test1"
+  name          = "w-test-storage-prd-demo-0823"
   location      = "US"
   force_destroy = true
 }
 
 resource "google_project_iam_member" "storageAdminSABinding" {
   project = "w-secteam-target-prod"
-  role    = "roles/owner"
+  role    = "roles/storage.admin"
   member  = "serviceAccount:prod-env@w-secteam-app-pipeline.iam.gserviceaccount.com"
-  # member = "user:tdesros@google.com"
 }
 
 resource "google_project_iam_custom_role" "my-custom-role" {
   project     = "w-secteam-target-prod"
-  role_id     = "myCustomRole"
-  title       = "My Custom Role"
-  description = "A description"
+  role_id     = "myCustomRole4"
+  title       = "My Custom Role 4"
+  description = "A description sfdafsda"
   permissions = ["iam.roles.list", "iam.roles.create", "iam.roles.delete"]
 }

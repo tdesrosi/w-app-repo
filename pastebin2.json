@@ -1,0 +1,125 @@
+"resource_changes": [
+    {
+        "address": "google_project_iam_binding.iam-service-account-user-12345",
+        "mode": "managed",
+        "type": "google_project_iam_binding",
+        "name": "iam-service-account-user-12345",
+        "provider_name": "registry.terraform.io/hashicorp/google",
+        "change": {
+            "actions": [
+                "create"
+            ],
+            "before": null,
+            "after": {
+                "condition": [],
+                "members": [
+                    "serviceAccount:service-12345@notiam.gserviceaccount.com",
+                    "user:bad@notgoogle.com"
+                ],
+                "project": "12345",
+                "role": "roles/iam.serviceAccountUser"
+            },
+            "after_unknown": {
+                "condition": [],
+                "etag": true,
+                "id": true,
+                "members": [
+                    false,
+                    false
+                ]
+            },
+            "before_sensitive": false,
+            "after_sensitive": {
+                "condition": [],
+                "members": [
+                    false,
+                    false
+                ]
+            }
+        }
+    },
+    {
+        "address": "google_project_iam_binding.owner-12345",
+        "mode": "managed",
+        "type": "google_project_iam_binding",
+        "name": "owner-12345",
+        "provider_name": "registry.terraform.io/hashicorp/google",
+        "change": {
+            "actions": [
+                "create"
+            ],
+            "before": null,
+            "after": {
+                "condition": [],
+                "members": [
+                    "group:admins@google.com",
+                    "user:evil@notgoogle.com",
+                    "user:powerful@google.com"
+                ],
+                "project": "12345",
+                "role": "roles/owner"
+            },
+            "after_unknown": {
+                "condition": [],
+                "etag": true,
+                "id": true,
+                "members": [
+                    false,
+                    false,
+                    false
+                ]
+            },
+            "before_sensitive": false,
+            "after_sensitive": {
+                "condition": [],
+                "members": [
+                    false,
+                    false,
+                    false
+                ]
+            }
+        }
+    },
+    {
+        "address": "google_project_iam_binding.viewer-12345",
+        "mode": "managed",
+        "type": "google_project_iam_binding",
+        "name": "viewer-12345",
+        "provider_name": "registry.terraform.io/hashicorp/google",
+        "change": {
+            "actions": [
+                "create"
+            ],
+            "before": null,
+            "after": {
+                "condition": [],
+                "members": [
+                    "allAuthenticatedUsers",
+                    "allUsers",
+                    "user:okay@google.com"
+                ],
+                "project": "12345",
+                "role": "roles/viewer"
+            },
+            "after_unknown": {
+                "condition": [],
+                "etag": true,
+                "id": true,
+                "members": [
+                    false,
+                    false,
+                    false
+                ]
+            },
+            "before_sensitive": false,
+            "after_sensitive": {
+                "condition": [],
+                "members": [
+                    false,
+                    false,
+                    false
+                ]
+            }
+        }
+    }
+]
